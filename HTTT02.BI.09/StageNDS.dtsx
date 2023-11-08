@@ -1,0 +1,2826 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/7/2023 3:31:54 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAPTOP-DL3J4E2D"
+  DTS:CreatorName="LAPTOP-DL3J4E2D\Mr.Khang"
+  DTS:DTSID="{8BA60603-8771-42E0-AD5C-2030AB3C7D6E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5314.0"
+  DTS:LocaleID="1066"
+  DTS:ObjectName="StageNDS"
+  DTS:PackageType="5"
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{9F2025A7-9AD1-4373-A346-E6BE53DC37CC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{91D35E62-A306-4387-A4C6-1A137733488D}"
+      DTS:ObjectName="LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-DL3J4E2D\MSSQLSERVER01;Initial Catalog=NDS;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-StageNDS-{91D35E62-A306-4387-A4C6-1A137733488D}LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.SSIS_TestDatawarehouse]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9B484181-FD64-4D59-9BD7-4F40D6188742}"
+      DTS:ObjectName="LAPTOP-DL3J4E2D\MSSQLSERVER01.SSIS_TestDatawarehouse">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=LAPTOP-DL3J4E2D\MSSQLSERVER01;Initial Catalog=SSIS_TestDatawarehouse;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-StageNDS-{9B484181-FD64-4D59-9BD7-4F40D6188742}LAPTOP-DL3J4E2D\MSSQLSERVER01.SSIS_TestDatawarehouse;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Import from Class_Stage to Class_NDS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{aa55f743-0b3e-41f3-8c1c-2ecdea5d062a}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import from Class_Stage to Class_NDS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add Create, Update date Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Outputs[Derived Column Output].Columns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Outputs[Derived Column Output].Columns[CreatedDate]"
+                      name="CreatedDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Outputs[Derived Column Output].Columns[UpdateDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Outputs[Derived Column Output].Columns[UpdateDate]"
+                      name="UpdateDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Class_Stage to Class_NDS\Add SourceId"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add SourceId"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Inputs[Derived Column Input].Columns[NK_ID_Stage]"
+                      cachedDataType="i4"
+                      cachedName="ID_Stage"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].Columns[ID_Stage]"
+                      name="NK_ID_Stage"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].Columns[ID_Stage]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">NK_ID_Stage</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Outputs[Derived Column Output].Columns[SourceId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Outputs[Derived Column Output].Columns[SourceId]"
+                      name="SourceId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">1</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Class_Stage to Class_NDS\Add update date column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add update date column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import from Class_Stage to Class_NDS\Add update date column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Class_Stage to Class_NDS\Add update date column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import from Class_Stage to Class_NDS\Add update date column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Add update date column.Outputs[Derived Column Output].Columns[UpdatedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add update date column.Outputs[Derived Column Output].Columns[UpdatedDate]"
+                      name="UpdatedDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Class_Stage to Class_NDS\Add update date column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import from Class_Stage to Class_NDS\Add update date column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Add update date column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add update date column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Add update date column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add update date column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Check if Class Id exists in Class_NDS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select id,NAME from Class_NDS where sourceId = 1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select id,NAME from Class_NDS where sourceId = 1) [refTable]
+where [refTable].[id] = ? and [refTable].[NAME] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NAME" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1258"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].Columns[ID_Stage]};#{Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].Columns[CLASSNAME_Stage]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Inputs[Lookup Input].Columns[ID_Stage]"
+                      cachedDataType="i4"
+                      cachedName="ID_Stage"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].Columns[ID_Stage]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Inputs[Lookup Input].Columns[CLASSNAME_Stage]"
+                      cachedCodepage="1258"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="CLASSNAME_Stage"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].Columns[CLASSNAME_Stage]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">NAME</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="RedirectRow"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Class_Stage to Class_NDS\Class_Stage"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Class_Stage"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Class_Stage]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.SSIS_TestDatawarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.SSIS_TestDatawarehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].Columns[ID_Stage]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].ExternalColumns[ID_Stage]"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].Columns[ID_Stage]"
+                      name="ID_Stage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].Columns[CLASSNAME_Stage]"
+                      codePage="1258"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].ExternalColumns[CLASSNAME_Stage]"
+                      length="100"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].Columns[CLASSNAME_Stage]"
+                      name="CLASSNAME_Stage"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].ExternalColumns[ID_Stage]"
+                      dataType="i4"
+                      name="ID_Stage" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].ExternalColumns[CLASSNAME_Stage]"
+                      codePage="1258"
+                      dataType="str"
+                      length="100"
+                      name="CLASSNAME_Stage" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Error Output].Columns[ID_Stage]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Error Output].Columns[ID_Stage]"
+                      name="ID_Stage" />
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Error Output].Columns[CLASSNAME_Stage]"
+                      codePage="1258"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Error Output].Columns[CLASSNAME_Stage]"
+                      name="CLASSNAME_Stage" />
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">update Class_NDS set UpdatedDate=?, Name =? where Id = ? and SourceId = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input].Columns[UpdatedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="UpdatedDate"
+                      externalMetadataColumnId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add update date column.Outputs[Derived Column Output].Columns[UpdatedDate]" />
+                    <inputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input].Columns[CLASSNAME_Stage]"
+                      cachedCodepage="1258"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="CLASSNAME_Stage"
+                      externalMetadataColumnId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].Columns[CLASSNAME_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input].Columns[ID_Stage]"
+                      cachedDataType="i4"
+                      cachedName="ID_Stage"
+                      externalMetadataColumnId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].Columns[ID_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input].Columns[SourceId]"
+                      cachedDataType="i4"
+                      cachedName="SourceId"
+                      externalMetadataColumnId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Outputs[Derived Column Output].Columns[SourceId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="dbTimeStamp"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1258"
+                      dataType="str"
+                      length="100"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="i4"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="i4"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Class_NDS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SourceId]"
+                      cachedDataType="i4"
+                      cachedName="SourceId"
+                      externalMetadataColumnId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceId]"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Outputs[Derived Column Output].Columns[SourceId]" />
+                    <inputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CreatedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="CreatedDate"
+                      externalMetadataColumnId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDate]"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Outputs[Derived Column Output].Columns[CreatedDate]" />
+                    <inputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ID_Stage]"
+                      cachedDataType="i4"
+                      cachedName="ID_Stage"
+                      externalMetadataColumnId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].Columns[ID_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CLASSNAME_Stage]"
+                      cachedCodepage="1258"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="CLASSNAME_Stage"
+                      externalMetadataColumnId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output].Columns[CLASSNAME_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[UpdateDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="UpdateDate"
+                      externalMetadataColumnId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UpdatedDate]"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Outputs[Derived Column Output].Columns[UpdateDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SK_ID]"
+                      dataType="i4"
+                      name="SK_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i4"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Name]"
+                      codePage="1258"
+                      dataType="str"
+                      length="100"
+                      name="Name" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SourceId]"
+                      dataType="i4"
+                      name="SourceId" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      name="CreatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UpdatedDate]"
+                      dataType="dbTimeStamp"
+                      name="UpdatedDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import from Class_Stage to Class_NDS.Paths[Derived Column Output]"
+              endId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import from Class_Stage to Class_NDS.Paths[Derived Column Output1]"
+              endId="Package\Import from Class_Stage to Class_NDS\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\Import from Class_Stage to Class_NDS\Add update date column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import from Class_Stage to Class_NDS.Paths[Derived Column Output2]"
+              endId="Package\Import from Class_Stage to Class_NDS\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import from Class_Stage to Class_NDS.Paths[Lookup Error Output]"
+              endId="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column.Inputs[Derived Column Input]"
+              name="Lookup Error Output"
+              startId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Outputs[Lookup Error Output]" />
+            <path
+              refId="Package\Import from Class_Stage to Class_NDS.Paths[Lookup Match Output]"
+              endId="Package\Import from Class_Stage to Class_NDS\Add update date column.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Import from Class_Stage to Class_NDS.Paths[OLE DB Source Output]"
+              endId="Package\Import from Class_Stage to Class_NDS\Add SourceId.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Import from Class_Stage to Class_NDS\Class_Stage.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import from Student_Stage to Student_NDS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3E3B2794-2C08-44B4-B6F2-7AE466655B65}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import from Student_Stage to Student_NDS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add Created, Updated Date"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Outputs[Derived Column Output].Columns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Outputs[Derived Column Output].Columns[CreatedDate]"
+                      name="CreatedDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Outputs[Derived Column Output].Columns[UpdatedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Outputs[Derived Column Output].Columns[UpdatedDate]"
+                      name="UpdatedDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Student_Stage to Student_NDS\Add SouceId"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add SouceId"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Inputs[Derived Column Input].Columns[NK_StudentId_Stage]"
+                      cachedDataType="i4"
+                      cachedName="StudentId_Stage"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[StudentId_Stage]"
+                      name="NK_StudentId_Stage"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[StudentId_Stage]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">NK_StudentId_Stage</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Outputs[Derived Column Output].Columns[SourceId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Outputs[Derived Column Output].Columns[SourceId]"
+                      name="SourceId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">1</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">1</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Add UpdatedDate"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate.Outputs[Derived Column Output].Columns[UpdatedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate.Outputs[Derived Column Output].Columns[UpdatedDate]"
+                      name="UpdatedDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[GETDATE]()</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">GETDATE()</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Check if ClassId exists in NDS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select SK_ID, ID from Class_NDS where SourceId = 1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select SK_ID, ID from Class_NDS where SourceId = 1) [refTable]
+where [refTable].[ID] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SK_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[CLASSID_Stage]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Inputs[Lookup Input].Columns[CLASSID_Stage]"
+                      cachedDataType="i4"
+                      cachedName="CLASSID_Stage"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[CLASSID_Stage]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ID</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="IgnoreFailure"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Outputs[Lookup Match Output].Columns[CLASS_ID_NDS]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Outputs[Lookup Match Output].Columns[CLASS_ID_NDS]"
+                      name="CLASS_ID_NDS"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SK_ID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Check if StudentId exists in NDS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select StudentId from Student_NDS where SourceId = 1</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select StudentId from Student_NDS where SourceId = 1) [refTable]
+where [refTable].[StudentId] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="StudentId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[StudentId_Stage]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Inputs[Lookup Input].Columns[StudentId_Stage]"
+                      cachedDataType="i4"
+                      cachedName="StudentId_Stage"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[StudentId_Stage]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">StudentId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="RedirectRow"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">update Student_NDS set UpdatedDate=?, FirstName=?, LastName=?, Marks=?, Gender=?, ClassId=? where StudentId=? and SourceId=?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].Columns[UpdatedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="UpdatedDate"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate.Outputs[Derived Column Output].Columns[UpdatedDate]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].Columns[FirstName_Stage]"
+                      cachedCodepage="1258"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="FirstName_Stage"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[FirstName_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].Columns[LastName_Stage]"
+                      cachedCodepage="1258"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="LastName_Stage"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[LastName_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].Columns[Marks_Stage]"
+                      cachedDataType="i4"
+                      cachedName="Marks_Stage"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[Marks_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].Columns[Gender_Stage]"
+                      cachedDataType="i4"
+                      cachedName="Gender_Stage"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[Gender_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].Columns[CLASSID_Stage]"
+                      cachedDataType="i4"
+                      cachedName="CLASSID_Stage"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[CLASSID_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].Columns[StudentId_Stage]"
+                      cachedDataType="i4"
+                      cachedName="StudentId_Stage"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[StudentId_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].Columns[SourceId]"
+                      cachedDataType="i4"
+                      cachedName="SourceId"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Outputs[Derived Column Output].Columns[SourceId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="dbTimeStamp"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1258"
+                      dataType="str"
+                      length="100"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      codePage="1258"
+                      dataType="str"
+                      length="100"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="i4"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="i4"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="i4"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      dataType="i4"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      dataType="i4"
+                      name="Param_7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Student_Stage to Student_NDS\Student_NDS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Student_NDS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Student_NDS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.NDS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].Columns[CreatedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="CreatedDate"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDate]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Outputs[Derived Column Output].Columns[CreatedDate]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].Columns[UpdatedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="UpdatedDate"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[UpdatedDate]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Outputs[Derived Column Output].Columns[UpdatedDate]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].Columns[StudentId_Stage]"
+                      cachedDataType="i4"
+                      cachedName="StudentId_Stage"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[StudentId]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[StudentId_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].Columns[FirstName_Stage]"
+                      cachedCodepage="1258"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="FirstName_Stage"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[FirstName_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].Columns[LastName_Stage]"
+                      cachedCodepage="1258"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="LastName_Stage"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[Lastname]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[LastName_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].Columns[Marks_Stage]"
+                      cachedDataType="i4"
+                      cachedName="Marks_Stage"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[Marks]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[Marks_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].Columns[Gender_Stage]"
+                      cachedDataType="i4"
+                      cachedName="Gender_Stage"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[Gender_Stage]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].Columns[SourceId]"
+                      cachedDataType="i4"
+                      cachedName="SourceId"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[SourceId]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Outputs[Derived Column Output].Columns[SourceId]" />
+                    <inputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].Columns[CLASS_ID_NDS]"
+                      cachedDataType="i4"
+                      cachedName="CLASS_ID_NDS"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[ClassId]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Outputs[Lookup Match Output].Columns[CLASS_ID_NDS]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[SK_ID]"
+                      dataType="i4"
+                      name="SK_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[StudentId]"
+                      dataType="i4"
+                      name="StudentId" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[Firstname]"
+                      codePage="1258"
+                      dataType="str"
+                      length="100"
+                      name="Firstname" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[Lastname]"
+                      codePage="1258"
+                      dataType="str"
+                      length="100"
+                      name="Lastname" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[Marks]"
+                      dataType="i4"
+                      name="Marks" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                      dataType="i4"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[ClassId]"
+                      dataType="i4"
+                      name="ClassId" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[SourceId]"
+                      dataType="i4"
+                      name="SourceId" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      name="CreatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input].ExternalColumns[UpdatedDate]"
+                      dataType="dbTimeStamp"
+                      name="UpdatedDate" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import from Student_Stage to Student_NDS\Student_Stage"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Student_Stage"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from Student_Stage</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.SSIS_TestDatawarehouse]"
+                  connectionManagerRefId="Package.ConnectionManagers[LAPTOP-DL3J4E2D\MSSQLSERVER01.SSIS_TestDatawarehouse]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[StudentId_Stage]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].ExternalColumns[StudentId_Stage]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[StudentId_Stage]"
+                      name="StudentId_Stage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[FirstName_Stage]"
+                      codePage="1258"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].ExternalColumns[FirstName_Stage]"
+                      length="255"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[FirstName_Stage]"
+                      name="FirstName_Stage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[LastName_Stage]"
+                      codePage="1258"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].ExternalColumns[LastName_Stage]"
+                      length="255"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[LastName_Stage]"
+                      name="LastName_Stage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[Marks_Stage]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].ExternalColumns[Marks_Stage]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[Marks_Stage]"
+                      name="Marks_Stage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[Gender_Stage]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].ExternalColumns[Gender_Stage]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[Gender_Stage]"
+                      name="Gender_Stage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[CLASSID_Stage]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].ExternalColumns[CLASSID_Stage]"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].Columns[CLASSID_Stage]"
+                      name="CLASSID_Stage"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].ExternalColumns[StudentId_Stage]"
+                      dataType="i4"
+                      name="StudentId_Stage" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].ExternalColumns[FirstName_Stage]"
+                      codePage="1258"
+                      dataType="str"
+                      length="255"
+                      name="FirstName_Stage" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].ExternalColumns[LastName_Stage]"
+                      codePage="1258"
+                      dataType="str"
+                      length="255"
+                      name="LastName_Stage" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].ExternalColumns[Marks_Stage]"
+                      dataType="i4"
+                      name="Marks_Stage" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].ExternalColumns[Gender_Stage]"
+                      dataType="i4"
+                      name="Gender_Stage" />
+                    <externalMetadataColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output].ExternalColumns[CLASSID_Stage]"
+                      dataType="i4"
+                      name="CLASSID_Stage" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[StudentId_Stage]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[StudentId_Stage]"
+                      name="StudentId_Stage" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[FirstName_Stage]"
+                      codePage="1258"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[FirstName_Stage]"
+                      name="FirstName_Stage" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[LastName_Stage]"
+                      codePage="1258"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[LastName_Stage]"
+                      name="LastName_Stage" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[Marks_Stage]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[Marks_Stage]"
+                      name="Marks_Stage" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[Gender_Stage]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[Gender_Stage]"
+                      name="Gender_Stage" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[CLASSID_Stage]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[CLASSID_Stage]"
+                      name="CLASSID_Stage" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import from Student_Stage to Student_NDS.Paths[Derived Column Output]"
+              endId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import from Student_Stage to Student_NDS.Paths[Derived Column Output1]"
+              endId="Package\Import from Student_Stage to Student_NDS\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import from Student_Stage to Student_NDS.Paths[Derived Column Output2]"
+              endId="Package\Import from Student_Stage to Student_NDS\Student_NDS.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import from Student_Stage to Student_NDS.Paths[Lookup Error Output]"
+              endId="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date.Inputs[Derived Column Input]"
+              name="Lookup Error Output"
+              startId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Outputs[Lookup Error Output]" />
+            <path
+              refId="Package\Import from Student_Stage to Student_NDS.Paths[Lookup Match Output]"
+              endId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Import from Student_Stage to Student_NDS.Paths[Lookup Match Output1]"
+              endId="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Import from Student_Stage to Student_NDS.Paths[OLE DB Source Output]"
+              endId="Package\Import from Student_Stage to Student_NDS\Add SouceId.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\Import from Student_Stage to Student_NDS\Student_Stage.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{97FF5CCD-B0E5-44E8-B4C8-2AA17C119A69}"
+      DTS:From="Package\Import from Class_Stage to Class_NDS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Import from Student_Stage to Student_NDS" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="260.8,41.6"
+          Id="Package\Import from Class_Stage to Class_NDS"
+          TopLeft="485.833306788572,154.466666299038" />
+        <NodeLayout
+          Size="280.8,41.6"
+          Id="Package\Import from Student_Stage to Student_NDS"
+          TopLeft="474.166640759344,331.066664364471" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="615.399973773958,196.066666299038">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,134.999998065432"
+              Start="0,0"
+              End="0,127.499998065432">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,127.499998065432" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Import from Class_Stage to Class_NDS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="252.8,41.6"
+          Id="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS"
+          TopLeft="523.999992191792,277.909086767923" />
+        <NodeLayout
+          Size="137.6,41.6"
+          Id="Package\Import from Class_Stage to Class_NDS\Class_Stage"
+          TopLeft="580.999991342426,56.9999991506339" />
+        <NodeLayout
+          Size="141.6,41.6"
+          Id="Package\Import from Class_Stage to Class_NDS\Add SourceId"
+          TopLeft="580.999991342425,176.999997362494" />
+        <EdgeLayout
+          Id="Package\Import from Class_Stage to Class_NDS.Paths[OLE DB Source Output]"
+          TopLeft="650.799991342426,98.5999991506339">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,78.3999982118606"
+              Start="0,0"
+              End="0,70.8999982118606">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,70.8999982118606" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import from Class_Stage to Class_NDS.Paths[Derived Column Output]"
+          TopLeft="651.099991767109,218.599997362494">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.3090894054283"
+              Start="0,0"
+              End="0,51.8090894054283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.8090894054283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="191.2,41.6"
+          Id="Package\Import from Class_Stage to Class_NDS\Add update date column"
+          TopLeft="400.999994024634,417.199993830919" />
+        <NodeLayout
+          Size="232,41.6"
+          Id="Package\Import from Class_Stage to Class_NDS\Add Create, Update date Column"
+          TopLeft="742.999988928437,422.599995216728" />
+        <EdgeLayout
+          Id="Package\Import from Class_Stage to Class_NDS.Paths[Lookup Error Output]"
+          TopLeft="691.199992191792,319.509086767923">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="167.799996736645,103.090908448805"
+              Start="0,0"
+              End="167.799996736645,95.5909084488049">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.6253856755552" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.6253856755552"
+                    Point2="0,41.6253856755552"
+                    Point3="4,41.6253856755552" />
+                  <mssgle:LineSegment
+                    End="163.799996736645,41.6253856755552" />
+                  <mssgle:CubicBezierSegment
+                    Point1="163.799996736645,41.6253856755552"
+                    Point2="167.799996736645,41.6253856755552"
+                    Point3="167.799996736645,45.6253856755552" />
+                  <mssgle:LineSegment
+                    End="167.799996736645,95.5909084488049" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="38.0336116495725,46.6253856755552,91.7327734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import from Class_Stage to Class_NDS.Paths[Lookup Match Output]"
+          TopLeft="609.599992191792,319.509086767923">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-112.999998167158,97.6909070629965"
+              Start="0,0"
+              End="-112.999998167158,90.1909070629965">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.4450077575118" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.4450077575118"
+                    Point2="0,39.4450077575118"
+                    Point3="-4,39.4450077575118" />
+                  <mssgle:LineSegment
+                    End="-108.999998167158,39.4450077575118" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-108.999998167158,39.4450077575118"
+                    Point2="-112.999998167158,39.4450077575118"
+                    Point3="-112.999998167158,43.4450077575118" />
+                  <mssgle:LineSegment
+                    End="-112.999998167158,90.1909070629965" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-104.691385802329,44.4450077575118,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\Import from Class_Stage to Class_NDS\OLE DB Command"
+          TopLeft="391.818175979636,513.63635728305" />
+        <EdgeLayout
+          Id="Package\Import from Class_Stage to Class_NDS.Paths[Derived Column Output1]"
+          TopLeft="496.599994024634,458.799993830919">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-21.1818180449985,54.8363634521311"
+              Start="0,0"
+              End="-21.1818180449985,47.3363634521311">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.4181817260656" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.4181817260656"
+                    Point2="0,27.4181817260656"
+                    Point3="-4,27.4181817260656" />
+                  <mssgle:LineSegment
+                    End="-17.1818180449985,27.4181817260656" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17.1818180449985,27.4181817260656"
+                    Point2="-21.1818180449985,27.4181817260656"
+                    Point3="-21.1818180449985,31.4181817260656" />
+                  <mssgle:LineSegment
+                    End="-21.1818180449985,47.3363634521311" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Import from Class_Stage to Class_NDS\OLE DB Destination"
+          TopLeft="765.454534048384,505.999993186105" />
+        <EdgeLayout
+          Id="Package\Import from Class_Stage to Class_NDS.Paths[Derived Column Output2]"
+          TopLeft="855.027261488411,464.199995216728">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41.7999979693777"
+              Start="0,0"
+              End="0,34.2999979693777">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.2999979693777" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from Class_Stage to Class_NDS\Check if Class Id exists in Class_NDS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from Class_Stage to Class_NDS\Class_Stage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from Class_Stage to Class_NDS\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Import from Student_Stage to Student_NDS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="147.2,41.6"
+          Id="Package\Import from Student_Stage to Student_NDS\Student_Stage"
+          TopLeft="727.999989151955,2.8421709430404E-14" />
+        <NodeLayout
+          Size="137.6,41.6"
+          Id="Package\Import from Student_Stage to Student_NDS\Add SouceId"
+          TopLeft="730.999989107251,111.99999833107" />
+        <EdgeLayout
+          Id="Package\Import from Student_Stage to Student_NDS.Paths[OLE DB Source Output]"
+          TopLeft="800.699989129603,41.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70.3999983310699"
+              Start="0,0"
+              End="0,62.8999983310699">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.8999983310699" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="218.4,41.6"
+          Id="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS"
+          TopLeft="683.999989807606,209.999996870756" />
+        <EdgeLayout
+          Id="Package\Import from Student_Stage to Student_NDS.Paths[Derived Column Output]"
+          TopLeft="796.499989457428,153.59999833107">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56.3999985396862"
+              Start="0,0"
+              End="0,48.8999985396862">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.8999985396862" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="228,41.6"
+          Id="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS"
+          TopLeft="682.999989822507,310.999995365739" />
+        <EdgeLayout
+          Id="Package\Import from Student_Stage to Student_NDS.Paths[Lookup Match Output]"
+          TopLeft="795.099989815056,251.599996870756">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.3999984949828"
+              Start="0,0"
+              End="0,51.8999984949828">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.8999984949828" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.1453117474914,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="160.8,41.6"
+          Id="Package\Import from Student_Stage to Student_NDS\Add UpdatedDate"
+          TopLeft="534.999992027879,417.999993771315" />
+        <NodeLayout
+          Size="206.4,41.6"
+          Id="Package\Import from Student_Stage to Student_NDS\Add Created, Updated Date"
+          TopLeft="864.999987110496,423.599995201826" />
+        <EdgeLayout
+          Id="Package\Import from Student_Stage to Student_NDS.Paths[Lookup Match Output1]"
+          TopLeft="760.33332315584,352.599995365739">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-144.933331127962,65.3999984055757"
+              Start="0,0"
+              End="-144.933331127962,57.8999984055757">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.4334488329156" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.4334488329156"
+                    Point2="0,26.4334488329156"
+                    Point3="-4,26.4334488329156" />
+                  <mssgle:LineSegment
+                    End="-140.933331127962,26.4334488329156" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-140.933331127962,26.4334488329156"
+                    Point2="-144.933331127962,26.4334488329156"
+                    Point3="-144.933331127962,30.4334488329156" />
+                  <mssgle:LineSegment
+                    End="-144.933331127962,57.8999984055757" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-120.658052282731,31.4334488329156,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import from Student_Stage to Student_NDS.Paths[Lookup Error Output]"
+          TopLeft="833.666656489174,352.599995365739">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="134.533330621322,70.9999998360871"
+              Start="0,0"
+              End="134.533330621322,63.4999998360871">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.6968640452478" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.6968640452478"
+                    Point2="0,28.6968640452478"
+                    Point3="4,28.6968640452478" />
+                  <mssgle:LineSegment
+                    End="130.533330621322,28.6968640452478" />
+                  <mssgle:CubicBezierSegment
+                    Point1="130.533330621322,28.6968640452478"
+                    Point2="134.533330621322,28.6968640452478"
+                    Point3="134.533330621322,32.6968640452478" />
+                  <mssgle:LineSegment
+                    End="134.533330621322,63.4999998360871" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="21.400278591911,33.6968640452478,91.7327734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\Import from Student_Stage to Student_NDS\OLE DB Command"
+          TopLeft="531.999992072582,539.999991953373" />
+        <NodeLayout
+          Size="141.6,41.6"
+          Id="Package\Import from Student_Stage to Student_NDS\Student_NDS"
+          TopLeft="891.999986708164,535.599992340803" />
+        <EdgeLayout
+          Id="Package\Import from Student_Stage to Student_NDS.Paths[Derived Column Output1]"
+          TopLeft="615.499992050231,459.599993771315">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,80.3999981820583"
+              Start="0,0"
+              End="0,72.8999981820583">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.8999981820583" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import from Student_Stage to Student_NDS.Paths[Derived Column Output2]"
+          TopLeft="965.49998690933,465.199995201826">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,70.3999971389772"
+              Start="0,0"
+              End="0,62.8999971389772">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,62.8999971389772" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from Student_Stage to Student_NDS\Student_Stage">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from Student_Stage to Student_NDS\Check if ClassId exists in NDS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from Student_Stage to Student_NDS\Check if StudentId exists in NDS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import from Student_Stage to Student_NDS\Student_NDS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
